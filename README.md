@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class MarksAndGradeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Input: Number of subjects
+        System.out.print("Enter the number of subjects: ");
+        int numOfSubjects = scanner.nextInt();
+        
+        // Array to store marks of each subject
+        double[] marks = new double[numOfSubjects];
+        double totalMarks = 0;
+        
+        // Input: Marks obtained in each subject
+        System.out.println("\nEnter marks obtained (out of 100) in each subject:");
+        for (int i = 0; i < numOfSubjects; i++) {
+            System.out.print("Subject " + (i + 1) + ": ");
+            marks[i] = scanner.nextDouble();
+            
+            // Validate marks are between 0 and 100
+            while (marks[i] < 0 || marks[i] > 100) {
+                System.out.print("Invalid mark! Enter marks between 0 and 100: ");
+                marks[i] = scanner.nextDouble();
+            }
+            
+            totalMarks += marks[i];
+        }
+        
+        // Calculate Average Percentage
+        double averagePercentage = totalMarks / numOfSubjects;
+        
+        // Grade Calculation based on average percentage
+        String grade;
+        if (averagePercentage >= 90) {
+            grade = "A+ (Outstanding)";
+        } else if (averagePercentage >= 80) {
+            grade = "A (Excellent)";
+        } else if (averagePercentage >= 70) {
+            grade = "B+ (Very Good)";
+        } else if (averagePercentage >= 60) {
+            grade = "B (Good)";
+        } else if (averagePercentage >= 50) {
+            grade = "C (Average)";
+        } else if (averagePercentage >= 40) {
+            grade = "D (Pass)";
+        } else {
+            grade = "F (Fail)";
+        }
+        
+        // Display Results
+        System.out.println("\n========== RESULTS ==========");
+        System.out.println("Total Marks: " + totalMarks + " / " + (numOfSubjects * 100));
+        System.out.println("Average Percentage: " + String.format("%.2f", averagePercentage) + "%");
+        System.out.println("Grade: " + grade);
+        System.out.println("=============================");
+        
+        scanner.close();
+    }
+}
